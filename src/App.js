@@ -1,7 +1,10 @@
 
 function App() {
   return (
-    <h1>Pomodoro</h1>
+    <div className="container">
+      <h1>Pomodoro</h1>
+      <small>Be Productive the right way</small>      
+    </div>
   );
 }
 
