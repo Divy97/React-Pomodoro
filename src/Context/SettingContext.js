@@ -54,9 +54,9 @@ const SettingContextProvider = (props) => {
         }
     }
 
-    const children = ({remaingTimer}) => {
-        const minutes = Math.floor(remaingTimer / 60 );
-        const seconds = remaingTimer % 60;
+    const children = ({reamingTimer}) => {
+        const minutes = Math.floor(reamingTimer / 60 );
+        const seconds = reamingTimer % 60;
 
         return `${minutes} ${seconds}`
     }
@@ -72,8 +72,7 @@ const SettingContextProvider = (props) => {
         pauseTimer,
         settingButton,
         setCurrentTimer,
-        updateExecute,
-        children
+        children 
         }}>
         {props.children}
     </SettingContext.Provider>
