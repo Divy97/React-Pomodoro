@@ -1,20 +1,19 @@
-import React, { useState,useContext } from 'react';
-import Button from './Button';
-import { SettingContext } from '../Context/SettingContext';
+import React, { useContext, useState } from 'react'
+import { SettingContext } from '../Context/SettingContext'
 
 const SetPomodoro = () => {
 
+    const [newTimer, setNewTimer] = useState({
+        work: 0.2,
+        short: 0.1,
+        long: 0.5,
+        active: 'work'
+    })
+
     const {updateExecute} = useContext(SettingContext)
 
-    const [newTimer, setNewTimer] = useState({
-        work: 0.3,
-        short: 0.2,
-        long: 1,
-        active: 'work'
-    });
-
-    const handleChange = (input) => {
-        const {name, value} = input.target;
+    const handleChange = input => {
+        const {name, value} = input.target
         switch (name) {
             case 'work':
                 setNewTimer({
@@ -34,42 +33,24 @@ const SetPomodoro = () => {
                     long: parseInt(value)
                 })
                 break;
-            default:
-                break;
         }
     }
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        updateExecute(newTimer);
+    const handleSubmit = e => {
+        e.preventDefault()
+        updateExecute(newTimer)
     }
-  return (
-    <div className='form-container'>
-        <form noValidate>
-            <div className='input-wrapper'>
-                <input 
-                className='input' 
-                name='work'
-                onChange={handleChange}
-                value={newTimer.work}
-                />
-                <input 
-                className='input' 
-                name='shortBreak'
-                onChange={handleChange}
-                value={newTimer.short}
-                />
-                <input 
-                className='input' 
-                name='longBreak'
-                onChange={handleChange}
-                value={newTimer.long}
-                />
-            </div>
-            <Button title='set timer' _callBack={handleSubmit}/>
-        </form>
-    </div>
-  )
+    return (
+        <div className="form-container">
+            <form noValidate onSubmit={handleSubmit}>
+                <div className="input-wrapper">
+                    <input className="input"  name="work" onChange={handleChange} value={newTimer.work} />
+                    <input className="input"  name="shortBreak" onChange={handleChange} value={newTimer.short} />
+                    <input className="input"  name="longBreak" onChange={handleChange} value={newTimer.long} />
+                </div>
+                <button type='submit'>Set Timer</button>
+            </form>
+        </div>
+    )
 }
 
 export default SetPomodoro
